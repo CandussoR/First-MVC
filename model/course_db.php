@@ -20,7 +20,7 @@ function get_course_name ($course_id) {
 
         $query = "SELECT * FROM courses WHERE courseID = :course_id";
         $statement = $db->prepare($query);
-        $statement->bindValue(:course_id, $course_id);
+        $statement->bindValue(':course_id', $course_id);
         $statement->execute();
         $course = $statement->fetch();
         $statement->closeCursor();
@@ -33,7 +33,7 @@ function delete_course($course_id) {
 
     $query = "DELETE FROM courses WHERE courseID = :course_id";
     $statement = $db->prepare($query);
-    $statement->bindValue(:course_id, $course_id);
+    $statement->bindValue(':course_id', $course_id);
     $statement->execute();
     $statement->closeCursor();
 }
@@ -43,7 +43,7 @@ function add_course($course_name) {
 
     $query = "INSERT INTO courses (course_name) VALUES (:course_name)";
     $statement = $db->prepare($query);
-    $statement->bindValue(:course_name, $course_name);
+    $statement->bindValue(':course_name', $course_name);
     $statement->execute();
     $statement->closeCursor();
 }

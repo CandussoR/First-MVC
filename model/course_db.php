@@ -8,7 +8,7 @@ function get_courses() {
     $statement = $db->prepare($query);
     $statement->execute();
     $courses = $statement->fetchAll();
-    $statemen->closeCursor();
+    $statement->closeCursor();
     return $courses;
 }
 

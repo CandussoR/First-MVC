@@ -4,18 +4,21 @@
         global $db;
 
         if ($course_id) {
-            $query = "SELECT A.id, A.description, C.courseName FROM assignments A LEFT JOIN courses C ON A.courseID = C. courseID WHERE A.courseID = :course_id ORDER BY A.id";
+            $query = "SELECT A.id, A.description, C.course_name FROM assignments A LEFT JOIN courses C ON A.courseID = C.courseID WHERE A.courseID = :course_id ORDER BY A.id";
         } else {
-            $query = "SELECT A.id, A.description, C.courseName FROM assignments A LEFT JOIN courses C ON A.courseID = C. courseID ORDER BY C.courseID";
+            $query = "SELECT A.id, A.description, C.course_name FROM assignments A LEFT JOIN courses C ON A.courseID = C.courseID ORDER BY C.courseID";
         }
 
         $statement = $db->prepare($query);
         $statement->bindValue(':course_id', $course_id);
-        $statement->execute();
+        if ($course_id) {
+            $statement->execute();
+        }
         $assignments = $statement->fetchAll();
         $statement->closeCursor();
         return $assignments;
     };
+
 
     function delete_assignment($assignment_id) {
         global $db;
@@ -27,6 +30,7 @@
         $statement->execute();
         $statement->closeCursor();
     }
+
 
     function add_assignment($course_id, $description) {
         global $db;

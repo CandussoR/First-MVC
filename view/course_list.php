@@ -20,11 +20,26 @@
                 </div>
             </div>
         <?php endforeach; ?>
-    </section>
-
-        
+    </section>    
 <?php } else { ?>
     <p>No courses yet.</p>
 <?php } ?>
+
+<section id="add" class="add">
+    <h2>Add course :</h2>
+    <form action="." method="post" id="add__form" class="add__form">
+        <input type="hidden" name="action" value="add_course">
+        <div class="add__inputs">
+            <label>Name :</label>
+            <input type="text" name="course_name" max_length="50" placeholder="Name" autofocus required>
+        </div>
+        <div class="add_addItem">
+            <button class="add-button bold">Add</button>
+        </div>
+    </form>
+</section>
+
+<br>
+<p><a href=".">View &amp; Add Assignments</a></p>
 
 <?php include('view/footer.php') ?>

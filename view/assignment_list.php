@@ -79,6 +79,8 @@
         </div>
     </form>
 </section>
+
 <br>
-<p><a href=".?action=list_courses">View/Edit Courses</a></p> 
+<p><a href=".?action=list_courses">View / Edit Courses</a></p> 
+
 <?php include('view/footer.php'); ?>

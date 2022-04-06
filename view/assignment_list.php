@@ -6,7 +6,7 @@
 
         <h1>Assignments</h1>
 
-        <form action="." method="get" id="list_header_select" class="list_header_select">
+        <form action="." method="get" id="list_header_select" class="list__header_select">
 
             <input type="hidden" name="action" value="list_assignments">
             <select name="course_id" required>
@@ -32,12 +32,12 @@
         <div class="list__row">
             <div class="list__item">
                 <p class="bold"><?= $assignment['course_name'] ?></p>
-                <p><?= assignment['description'] ?></p>
+                <p><?= $assignment['description'] ?></p>
             </div>
             <div class="list__removeItem">
                 <form action="." method="post">
                 <input type="hidden" name="action" value="delete_assignment">
-                <input type="hidden" name="assignment_id" value="<?= $assignment['ID'] ?>">
+                <input type="hidden" name="assignment_id" value="<?= $assignment['id'] ?>">
                 <button class="remove-button">❌</button>
                 </form>
             </div>

@@ -1,7 +1,5 @@
 <?php
-    $dsn = 'mysql:host=localhost;dbname=assignment_tracker';
-    $username = 'root';
-    $password = 'z1y2w3X4*';
+    include('db_config.php');
 
     try {
         $db = new PDO($dsn, $username, $password);

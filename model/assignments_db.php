@@ -3,19 +3,20 @@
     function get_assigment_by_course($course_id) {
         global $db;
 
+        $assignments_by_course_query = "SELECT A.id, A.description, C.course_name FROM assignments A LEFT JOIN courses C ON A.courseID = C.courseID WHERE A.courseID = :course_id ORDER BY A.id";
+        $all_assignments_query = "SELECT A.id, A.description, C.course_name FROM assignments A LEFT JOIN courses C ON A.courseID = C.courseID ORDER BY C.courseID";
+
         if ($course_id) {
-            $query = "SELECT A.id, A.description, C.course_name FROM assignments A LEFT JOIN courses C ON A.courseID = C.courseID WHERE A.courseID = :course_id ORDER BY A.id";
+            $statement = $db->prepare($assignments_by_course_query);
+            $statement->bindValue(':course_id', $course_id);
         } else {
-            $query = "SELECT A.id, A.description, C.course_name FROM assignments A LEFT JOIN courses C ON A.courseID = C.courseID ORDER BY C.courseID";
+            $statement = $db->prepare($all_assignments_query);
         }
 
-        $statement = $db->prepare($query);
-        $statement->bindValue(':course_id', $course_id);
-        if ($course_id) {
-            $statement->execute();
-        }
+        $statement->execute();
         $assignments = $statement->fetchAll();
         $statement->closeCursor();
+
         return $assignments;
     };
 
